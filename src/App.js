@@ -7,7 +7,7 @@ import Steps from './components/steps';
 import Failure from './components/failure';
 import Main from './components/main';
 import { lbus, apps,phFiles,myFiles } from "./data/dropdown";
-import { stockData } from "./data/jsondata";
+// import { stockData } from "./data/jsondata";
 
 // import { Link, Switch, Route} from 'react-router';
 import {Route, Switch, Redirect} from 'react-router-dom';
@@ -42,7 +42,9 @@ getTotalScenarios1(fileData) {
   let totalSen = 0;
   const totalDuration = fileData.map((data) => {
     totalSen = data.elements.length + totalSen;
+     return totalSen;
   });
+  console.log(totalDuration);
   return totalSen;
 }
 
@@ -50,11 +52,16 @@ getTotalScenarios1(fileData) {
     let exeTime = 0;
     const totalDuration = fileData.map((data) => {
       return data.elements.map((element) => {
-        element.steps.map((step, count) => {
-          if (step.result.duration) exeTime = step.result.duration + exeTime;
+        return element.steps.map((step, count) => {
+          if (step.result.duration) 
+          {
+            exeTime = step.result.duration + exeTime;
+          }
+          return null;
         });
       });
     });
+     console.log(totalDuration);
     exeTime = exeTime / 1000000000 / 60 / 60;
     let myNumberWithTwoDecimalPlaces = parseFloat(exeTime).toFixed(2);
     return myNumberWithTwoDecimalPlaces;
@@ -65,13 +72,17 @@ getTotalScenarios1(fileData) {
   const totalDuration = fileData.map((data) => {
     return data.elements.map((element) => {
       let failCount = 0;
-      element.steps.map((step, count) => {
+       element.steps.map((step, count) => {
         if (step.result.status === "failed" || step.result.status === "skipped")
           failCount = 1;
+         return null;  
       });
       if (failCount === 0) passedCount = 1 + passedCount;
+       return null;  
     });
+    
   });
+   console.log(totalDuration);
   return passedCount;
 }
 
@@ -83,10 +94,13 @@ getTotalScenarios1(fileData) {
       element.steps.map((step, count) => {
         if (step.result.status === "failed" || step.result.status === "skipped")
           failCount = 1;
+         return null;    
       });
       if (failCount === 1) passedCount = 1 + passedCount;
+       return null;  
     });
   });
+   console.log(totalDuration);
   return passedCount;
 }
 
@@ -155,6 +169,7 @@ getTotalScenarios1(fileData) {
          
       executionData.push({"id":index1,"date":fileData.date,"lbu":this.state.selectedOption1.label,"environment":fileData.env, "totalScenarios":totalSen,"totalExecTime":totalExec,"totalPassed":totalPassed, "totalFailed":totalFailed, "report":fileData.reportPath});
       index1++;
+       return null;  
 
       });
 
@@ -189,7 +204,7 @@ getTotalScenarios1(fileData) {
 getStepsKpis(fileData) {
   let steps = [];
   let index = 1;
-  const totalDuration = fileData.map((data) => {
+  fileData.map((data) => {
     return data.elements.map((element) => {
       element.steps.map((step, count) => {
         if (step.result.duration){
@@ -205,7 +220,9 @@ getStepsKpis(fileData) {
             }
 
         } 
+         return null;  
       });
+      return null;  
     });
   });
   return steps;

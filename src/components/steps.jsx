@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Pagination from "react-bootstrap/Pagination";
+// import Pagination from "react-bootstrap/Pagination";
 class Steps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reverse: false,
       currentPageNumber: 1,
       numItemsPerPage: 20,
       titleFilter: "",
@@ -56,6 +55,7 @@ class Steps extends Component {
         ) {
           return step;
         }
+        return null;
       });
       this.setState({
         filteredData: filteredData,

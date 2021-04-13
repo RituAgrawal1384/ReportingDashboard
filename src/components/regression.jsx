@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 // import React from "react";
 import "../App.css";
-import { stockData } from "../data/jsondata";
-import pdf from "../data/MY/22-Mar-2021/Sales-portal-test-results.pdf";
+// import pdf from "../data/MY/22-Mar-2021/Sales-portal-test-results.pdf";
 
 // const Regression = (props) => {
 //   const {
@@ -128,6 +127,7 @@ class Regression extends Component {
         ) {
           return step;
         }
+        return null;
       });
       this.setState({
         filteredData: filteredData,
