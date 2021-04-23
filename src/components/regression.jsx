@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 // import React from "react";
-import "../App.css";
 // import pdf from "../data/MY/22-Mar-2021/Sales-portal-test-results.pdf";
 
 // const Regression = (props) => {
@@ -103,6 +102,7 @@ class Regression extends Component {
       currentPageNumber: 1,
       numItemsPerPage: 20,
       titleFilter: "",
+      envFilter: "",
       filteredData: props.regressionData1,
     };
   }
@@ -118,17 +118,32 @@ class Regression extends Component {
     });
   }
 
+  handleEnvironmentChange(e) {
+    this.setState({
+      envFilter: e.target.value || "",
+    });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     // Typical usage (don't forget to compare props):
-    if (this.state.titleFilter !== prevState.titleFilter) {
+    if (
+      this.state.titleFilter !== prevState.titleFilter ||
+      this.state.envFilter !== prevState.envFilter
+    ) {
       let filteredData = this.props.regressionData1.filter((step) => {
         if (
-          step.date.toLowerCase().includes(this.state.titleFilter.toLowerCase())
+          step.date
+            .toLowerCase()
+            .includes(this.state.titleFilter.toLowerCase()) &&
+          step.environment
+            .toLowerCase()
+            .includes(this.state.envFilter.toLowerCase())
         ) {
           return step;
         }
         return null;
       });
+
       this.setState({
         filteredData: filteredData,
       });
@@ -140,6 +155,7 @@ class Regression extends Component {
         id,
         date,
         lbu,
+        build,
         environment,
         totalScenarios,
         totalExecTime,
@@ -152,6 +168,7 @@ class Regression extends Component {
           {/* <td>{id}</td> */}
           <td>{date}</td>
           <td>{lbu}</td>
+          <td>{build}</td>
           <td>{environment}</td>
           <td>{totalExecTime}</td>
           <td>{totalScenarios}</td>
@@ -173,7 +190,8 @@ class Regression extends Component {
   renderTableHeader() {
     let header = [
       "Date",
-      "Lbu",
+      "LBU",
+      "Build No.",
       "Environment",
       "Execution Time (Hours)",
       "Total Scenarios",
@@ -182,21 +200,51 @@ class Regression extends Component {
       "Report",
     ];
     return header.map((key, index) => {
-      return <th key={index}>{key}</th>;
+      if (key === "Date") {
+        return (
+          <th key={index}>
+            {"Execution Date"}
+            <input
+              style={{ width: "100" }}
+              type="text"
+              placeholder="Search"
+              id={index}
+              value={this.state.titleFilter}
+              onChange={this.titleFilterHandler.bind(this)}
+            />
+          </th>
+        );
+      } else if (key === "Environment") {
+        return (
+          <th key={index}>
+            {key}
+            <input
+              style={{ width: "100" }}
+              type="text"
+              placeholder="Search"
+              id={index}
+              value={this.state.envFilter}
+              onChange={this.handleEnvironmentChange.bind(this)}
+            />
+          </th>
+        );
+      } else {
+        return <th key={index}>{key}</th>;
+      }
     });
   }
   render() {
     return (
       <div className="stock-container">
         <h2 id="title">Regression Report</h2>
-        <input
-          style={{ width: "200px" }}
+        {/* <input
+          style={{ width: "300px" }}
           type="text"
-          placeholder="Search by Date"
+          placeholder="Search by Date, Environment"
           id="table_blog_title_filter"
           value={this.state.titleFilter}
           onChange={this.titleFilterHandler.bind(this)}
-        />
+        /> */}
         <table id="regression">
           <tbody>
             <tr>{this.renderTableHeader()}</tr>

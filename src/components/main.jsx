@@ -48,24 +48,18 @@ class Main extends Component {
     const {
       onLbuChange,
       onAppChange,
+      onPlatformChange,
       selectedOption1,
       selectedOption2,
+      selectedOption3,
       lbuOptions,
       appOptions,
+      platforms,
+      isAppAccessible,
+      appAccessName,
     } = this.props;
     return (
       <div className="d-flex justify-content-center">
-        <div className="col-sm-4">
-          <label>Lbu</label>
-          <Select
-            defaultValue={selectedOption1}
-            // options={lbus}
-            // formatGroupLabel={formatGroupLabel}
-            value={selectedOption1}
-            onChange={onLbuChange}
-            options={lbuOptions}
-          />
-        </div>
         <div className="col-sm-4">
           <label>Application</label>
           <Select
@@ -77,6 +71,33 @@ class Main extends Component {
             options={appOptions}
           />
         </div>
+
+        {isAppAccessible ? (
+          <>
+            <div className="col-sm-4">
+              <label>LBU</label>
+              <Select
+                defaultValue={selectedOption1}
+                // options={lbus}
+                // formatGroupLabel={formatGroupLabel}
+                value={selectedOption1}
+                onChange={onLbuChange}
+                options={lbuOptions}
+              />
+            </div>
+            {appAccessName.includes(selectedOption2.label) ? (
+              <div className="col-sm-4">
+                <label>Platform</label>
+                <Select
+                  defaultValue={selectedOption3}
+                  value={selectedOption3}
+                  onChange={onPlatformChange}
+                  options={platforms}
+                />
+              </div>
+            ) : null}
+          </>
+        ) : null}
       </div>
     );
   }

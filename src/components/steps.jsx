@@ -51,7 +51,10 @@ class Steps extends Component {
     if (this.state.titleFilter !== prevState.titleFilter) {
       let filteredData = this.props.stepsData.filter((step) => {
         if (
-          step.name.toLowerCase().includes(this.state.titleFilter.toLowerCase())
+          step.name
+            .toLowerCase()
+            .includes(this.state.titleFilter.toLowerCase()) ||
+          step.time >= parseFloat(this.state.titleFilter)
         ) {
           return step;
         }

@@ -5,8 +5,9 @@ import Home from './components/home';
 import Regression from './components/regression';
 import Steps from './components/steps';
 import Failure from './components/failure';
+import DetailedReport from './components/detailedReport';
 import Main from './components/main';
-import { lbus, apps,phFiles,myFiles } from "./data/dropdown";
+import { lbus, apps,platform,pulse,salesPortal,hrPortal,pulseops } from "./data/dropdown";
 // import { stockData } from "./data/jsondata";
 
 // import { Link, Switch, Route} from 'react-router';
@@ -29,13 +30,24 @@ class App extends Component {
     ],
     selectedOption1: lbus[1],
     selectedOption2: { value: "sales", label: "Sales Portal" },
+    selectedOption3:{ value: "Android", label: "Android" },
     latestStepsKpis:[],
     regressionData:[],
     totalPassed:0,
     totalFailed:0,
+    status:"",
+    latestDate:null,
+    failureData:[],
+    reportData:[],
+    reportDate:[],
+    isAppAccessible: false,
+    appAccessName:["Pulse For Ops","Pulse"],
+     
   };
 
     this.handleChangeLbu =this.handleChangeLbu.bind(this)
+    this.handleChangeApp =this.handleChangeApp.bind(this)
+    this.handlePlatformApp =this.handlePlatformApp.bind(this)
   }
 
 getTotalScenarios1(fileData) {
@@ -108,8 +120,13 @@ getTotalScenarios1(fileData) {
   componentDidMount(){
     //AJAX Call for server data
     console.log("App Mounted");
+    const app = this.state.selectedOption2.label;
+    this.state.appAccessName.includes(app)?this.setState({isAppAccessible:true}):this.setState({isAppAccessible:false});
+
+    this.getFailuresOnLBU();
+    this.getDetailedReport();
     let latestReportData = this.getRegressionDataBasedOnLBU();
-     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed});
+     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed, latestDate:latestReportData[0].date});
   
     }
 
@@ -126,52 +143,105 @@ getTotalScenarios1(fileData) {
 
   componentDidUpdate(prevProps,prevState,snapshot) {
     // Typical usage (don't forget to compare props):
-    if (this.state.selectedOption1 !== prevState.selectedOption1) {
+    if ((this.state.selectedOption1 !== prevState.selectedOption1) || (this.state.selectedOption2 !== prevState.selectedOption2) || (this.state.selectedOption3 !== prevState.selectedOption3)) {
+      this.getFailuresOnLBU();
+      this.getDetailedReport();
      let latestReportData = this.getRegressionDataBasedOnLBU();
-     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed});
+     if(latestReportData.length > 0){
+     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed,latestDate:latestReportData[0].date});
+     }
   
     }
   }
 
-
+  getRunDataForApp(app,lbu,platform){
+    let tempData =null;
+    switch(app) {
+      case 'sales':
+          tempData=salesPortal
+          tempData = tempData.filter((fData) => {
+                if (
+                  fData.lbu.toLowerCase().includes(lbu.toLowerCase())
+                ) {
+                  return fData;
+                }
+                return null;
+              });
+          break;
+      case 'hr':
+          tempData=hrPortal
+          tempData = tempData.filter((fData) => {
+                if (
+                  fData.lbu.toLowerCase().includes(lbu.toLowerCase())
+                ) {
+                  return fData;
+                }
+                return null;
+              });
+          break;
+        case 'pulse':
+          tempData=pulse
+          tempData = tempData.filter((fData) => {
+                if (
+                  fData.lbu.toLowerCase().includes(lbu.toLowerCase()) && fData.platform.toLowerCase().includes(platform.toLowerCase()) 
+                ) {
+                  return fData;
+                }
+                return null;
+              });
+          break;
+        case 'pulsevn':
+          tempData=pulseops
+          tempData = tempData.filter((fData) => {
+                if (
+                  fData.lbu.toLowerCase().includes(lbu.toLowerCase()) && fData.platform.toLowerCase().includes(platform.toLowerCase()) 
+                ) {
+                  return fData;
+                }
+                return null;
+              });
+          break;
+      default:;
+    }
+    return tempData;
+  }
 
    getRegressionDataBasedOnLBU(){
     let executionData = [];
     let latestFileData =[];
     let index1=0;
-    const lbu = this.state.selectedOption1.label;
-    let tempData =null;
-    switch(lbu) {
-      case 'MY':
-          tempData=myFiles
-          break;
-      case 'PH':
-          tempData=phFiles
-          break;
-      default:;
-    }
-    // if(lbu === "MY"){
-    //   tempData=phFiles;
-    // }
-    let latestDate =this.getLatestDate(tempData);
-     tempData.map((fileData) => {
-      let myLib = require('.' + fileData.jsonFilePath);
-      let totalSen = this.getTotalScenarios1(myLib);
-      let totalExec = this.getTotalExecutionTime1(myLib);
-      let totalPassed = this.getTotalPassedScenarios1(myLib);
-      let totalFailed = this.getTotalFailedScenarios1(myLib);
-      if(latestDate === fileData.date){
-        let latestStepsKpis = this.getStepsKpis(myLib);
-        latestFileData.push({"steps":latestStepsKpis,"passed":totalPassed,"failed":totalFailed});
-        // this.setState({ latestStepsKpis, totalPassed,totalFailed});
-       
-      }
-         
-      executionData.push({"id":index1,"date":fileData.date,"lbu":this.state.selectedOption1.label,"environment":fileData.env, "totalScenarios":totalSen,"totalExecTime":totalExec,"totalPassed":totalPassed, "totalFailed":totalFailed, "report":fileData.reportPath});
-      index1++;
-       return null;  
+    let status= "passed";
+    const lbu = this.state.selectedOption1.value;
+    const app = this.state.selectedOption2.value;
+    const platform = this.state.selectedOption3.value;
+    let tempData =this.getRunDataForApp(app,lbu,platform);
+    if(tempData !== null){
+      let latestDate =this.getLatestDate(tempData);
+      tempData.map((fileData) => {
+        let myLib = require('.' + fileData.jsonFilePath);
+        let totalSen = this.getTotalScenarios1(myLib);
+        let totalExec = this.getTotalExecutionTime1(myLib);
+        let totalPassed = this.getTotalPassedScenarios1(myLib);
+        let totalFailed = this.getTotalFailedScenarios1(myLib);
+        if(latestDate === fileData.date){
+          let latestStepsKpis = this.getStepsKpis(myLib);
+          latestFileData.push({"steps":latestStepsKpis,"passed":totalPassed,"failed":totalFailed,"date":latestDate});
+          // this.setState({ latestStepsKpis, totalPassed,totalFailed});
+        
+        }
 
-      });
+        if(totalFailed !==0){
+            status="failed";
+        }else{
+          status="passed";
+        }
+          
+        executionData.push({"id":index1,"date":fileData.date,"lbu":this.state.selectedOption1.label,"build":fileData.build,"environment":fileData.env, "totalScenarios":totalSen,"totalExecTime":totalExec,"totalPassed":totalPassed, "totalFailed":totalFailed, "report":fileData.reportPath,"status":status});
+        index1++;
+        return null;  
+
+        });
+    }
 
        this.setState({ regressionData:executionData });
        return latestFileData;
@@ -191,14 +261,180 @@ getTotalScenarios1(fileData) {
    return formattedDate;
   }
 
+  getFailureDetails(fileData) {
+    // let featureData = [];
+    let scenariosData = [];
+   fileData.map((feature) => {
+      feature.elements.map((scenario) => {
+         let stepData = [];
+         let errorMessage ="";
+        scenario.steps.map((step) => {
+          if (step.result.status === "failed"){
+              errorMessage=step.result.error_message;
+               stepData.push({"label": "Step: " + step.name,"icon": "fa fa-folder","children":[{"label":"Error: " + errorMessage,"icon": "fa fa-folder"}]});
+
+          }
+         
+          return null;    
+        });
+       
+        let myString = errorMessage.split(':')[0];
+        console.log(myString)
+        if(myString !== ""){
+          const index1 = scenariosData.findIndex((e) => e.label === myString);
+            if (index1 === -1) {
+              scenariosData.push({"label":myString,"icon": "fa fa-folder","children":[]});
+
+              // scenariosData.push({"errorname":myString,"features":{"featurename":feature.name,"scenarios":{"scenarioname":scenario.name,"steps":stepData}}});
+              const index2 = scenariosData.findIndex((e) => e.label === myString);
+              scenariosData[index2].children[0]={"label":"Scenario: " + scenario.name+"["+feature.uri+"]","icon": "fa fa-folder","children":stepData};
+
+            } else {
+              scenariosData[index1].children[Object.keys(scenariosData[index1].children).length]={"label":"Scenario: " + scenario.name+"["+feature.uri+"]","icon": "fa fa-folder","children":stepData};
+              // scenariosData[index1].features.push({"featurename":feature.name,"scenarios":{"scenarioname":scenario.name,"steps":stepData}});
+            }
+       }
+        return null;  
+      });
+        // featureData.push({"name":feature.name,"scenarios":scenariosData});
+         return null;  
+    });
+  return scenariosData;
+}
+
+  getFailuresOnLBU(){
+    let executionData = [];
+    let index1=0;
+    const lbu = this.state.selectedOption1.value;
+    const app = this.state.selectedOption2.value;
+    const platform = this.state.selectedOption3.value;
+    let tempData =this.getRunDataForApp(app,lbu,platform);
+  
+    if(tempData !== null){
+     tempData.map((fileData) => {
+      let myLib = require('.' + fileData.jsonFilePath);
+      let featureData = this.getFailureDetails(myLib);
+      executionData.push({"id":index1,"label":fileData.date + "["+fileData.env+"]","icon": "fa fa-folder","children":featureData});
+      index1++;
+       return null;  
+
+      });
+    }
+       this.setState({ failureData:executionData });
+       return executionData;
+  }
+
+  getDetailedReport(){
+    let reportData = [];
+    let reportDate=[];
+    let index1=0;
+    const lbu = this.state.selectedOption1.value;
+    const app = this.state.selectedOption2.value;
+    const platform = this.state.selectedOption3.value;
+    let tempData =this.getRunDataForApp(app,lbu,platform);
+  
+    if(tempData !== null){
+     tempData.map((fileData) => {
+      let myLib = require('.' + fileData.jsonFilePath);
+      let featureData = this.getReportFeatureData(myLib);
+      reportData.push({"id":index1,"label":fileData.date + "["+fileData.env+"]","icon": "fa fa-folder","children":featureData});
+      reportDate.push({ value: fileData.date + "["+fileData.env+"]", label: fileData.date + "["+fileData.env+"]" });
+      index1++;
+       return null;  
+
+      });
+    }
+       this.setState({ reportData:reportData,
+        reportDate:reportDate
+       });
+       return reportData;
+  }
+
+  getReportFeatureData(fileData) {
+    let featureData = [];
+    let index=0;
+   fileData.map((feature) => {
+      let exeTime = 0;
+      let status="Passed";
+      let totalScenariosCount=0;
+      let totalScenariosFailedCount=0;
+      let totalScenariosPassedCount=0;
+      let stepCount=0;
+      let totalStepsFailedCount=0;
+      let totalStepsPassedCount=0;
+      let totalStepsSkipCount=0;
+      feature.elements.map((scenario) => {
+        let scenarioStatus= "Passed";
+        scenario.steps.map((step) => {
+          if (step.result.status === "failed"){
+             status="Failed";
+             scenarioStatus="Failed";
+             totalStepsFailedCount++;
+          }else if (step.result.status === "skipped"){
+             totalStepsSkipCount++;
+          }else if (step.result.status === "passed"){
+             totalStepsPassedCount++;
+          }
+          if (step.result.duration) 
+          {
+            exeTime = step.result.duration + exeTime;
+          }
+          stepCount++;
+          return null;    
+        });
+        totalScenariosCount++;
+        if(scenarioStatus==="Passed"){
+            totalScenariosPassedCount++;
+        }else if(scenarioStatus==="Failed"){
+            totalScenariosFailedCount++;
+        }
+        // stepData.push({"totalsteps":stepCount,"passedcount":totalStepsPassedCount,"failedcount":totalStepsFailedCount,"skippedcount":totalStepsSkipCount});
+
+        // scenariosData.push({"totalScenarios":totalScenariosCount,"passedcount":totalScenariosPassedCount,"failedcount":totalScenariosFailedCount,"totalSteps": stepData.totalsteps,"stepPassed":stepData.passedcount,"stepFailed":stepData.failedcount,"skippedcount":stepData.skippedcount});
+        return null;  
+      });
+       exeTime = exeTime / 1000000000 / 60 / 60;
+      let myNumberWithTwoDecimalPlaces = parseFloat(exeTime).toFixed(2);
+      let tagName=" ";
+      if(typeof feature.tags !== "undefined"){
+         feature.tags.map((tag) => {
+            tagName =tagName + tag.name;
+            return null;
+         });
+         
+      }
+        featureData.push({"id":index,"name":feature.uri,"tag":tagName,"status":status,"exectime":myNumberWithTwoDecimalPlaces,"totalscenarios":totalScenariosCount,"scPassed":totalScenariosPassedCount, "scFailed":totalScenariosFailedCount,"totalsteps":stepCount,"stepPassed":totalStepsPassedCount, "stepFailed":totalStepsFailedCount,"stepSkipped":totalStepsSkipCount});
+         index++;
+        return null;  
+    });
+  return featureData;
+}
+
   handleChangeLbu = (selectedOption1) => {
-    this.setState({ selectedOption1 });
-    console.log(`Option selected:`, selectedOption1);
+    this.setState({ selectedOption1,
+      latestStepsKpis:[],
+       totalPassed:0,
+       totalFailed:0,
+     });
   };
 
   handleChangeApp = (selectedOption2) => {
-    this.setState({ selectedOption2 });
-    console.log(`Option selected:`, selectedOption2);
+    this.setState({ selectedOption2,
+      latestStepsKpis:[],
+       totalPassed:0,
+       totalFailed:0,
+    });
+    const app = selectedOption2.label;
+    this.state.appAccessName.includes(app)?this.setState({isAppAccessible:true}):this.setState({isAppAccessible:false});
+  };
+
+   handlePlatformApp = (selectedOption3) => {
+    this.setState({ selectedOption3 ,
+      latestStepsKpis:[],
+       totalPassed:0,
+       totalFailed:0,
+    });
+    console.log(`Option selected:`, selectedOption3);
   };
 
 getStepsKpis(fileData) {
@@ -265,10 +501,15 @@ getStepsKpis(fileData) {
         {<Main
           onLbuChange={this.handleChangeLbu}
           onAppChange={this.handleChangeApp}
+          onPlatformChange={this.handlePlatformApp}
           selectedOption1={this.state.selectedOption1}
           selectedOption2={this.state.selectedOption2}
+          selectedOption3={this.state.selectedOption3}
           lbuOptions={lbus}
           appOptions={apps}
+          platforms={platform}
+          isAppAccessible={this.state.isAppAccessible}
+          appAccessName={this.state.appAccessName}
         />}
         <br/>
         {/* <Counters
@@ -278,9 +519,10 @@ getStepsKpis(fileData) {
           onDelete={this.handleDelete}
         /> */}
       </main>
+      {this.state.isAppAccessible ? (
        <Switch>
         <Route exact path="/Home" render={(props) => (
-              <Home {...props} isAuthed={true} totalPassedSenario={this.state.totalPassed} totalFailedSenario={this.state.totalFailed}/>
+              <Home {...props} isAuthed={true} totalPassedSenario={this.state.totalPassed} totalFailedSenario={this.state.totalFailed} latestDate={this.state.latestDate} regressionData1={this.state.regressionData}/>
             )} />
         <Route exact path="/">
           <Redirect to="/Home" />
@@ -295,8 +537,14 @@ getStepsKpis(fileData) {
          <Route exact path="/Steps" render={(props) => (
               <Steps {...props} isAuthed={true} stepsData={this.state.latestStepsKpis}/>
             )} />
-          <Route exact path="/Failure" component={Failure} />
+          <Route exact path="/Failure" render={(props) => (
+            <Failure {...props} isAuthed={true} failureData={this.state.failureData}/>
+          )} />
+           <Route exact path="/Detailed" render={(props) => (
+            <DetailedReport {...props} isAuthed={true} reportData={this.state.reportData} reportDate={this.state.reportDate}/>
+          )} />
      </Switch>
+      ):(<div className="app-access">You do not have access to this Application.</div>)}
       </React.Fragment>
      );
   }

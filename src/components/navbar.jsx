@@ -45,6 +45,9 @@ const NavBar = ({ totalCounters }) => {
           <Link className="nav-item nav-link" to="/Failure">
             Failure Analysis
           </Link>
+          <Link className="nav-item nav-link" to="/Detailed">
+            Detailed Report
+          </Link>
         </div>
         {/* <form class="form-inline my-2 my-lg-0">
           <input

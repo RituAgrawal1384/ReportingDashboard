@@ -54,7 +54,7 @@
   color: #172735;
 }
 
-table {
+#regression {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -63,12 +63,12 @@ table {
   border: 3px solid #ddd;
   width: 100%;
 }
-td {
+#regression td {
   border: 1px gray;
   width: 28em;
 }
 
-th {
+#regression th {
   border: 1px solid #ddd;
   width: 28em;
 }
@@ -101,4 +101,72 @@ th {
 #steps th {
   border: 1px solid #ddd;
   padding: 8px;
+}
+
+.d-tree-container {
+  list-style: none;
+  padding: 0;
+}
+
+.d-tree-node {
+  padding: 0.75rem 1.25rem;
+}
+
+.d-tree-toggler.active {
+  transform: rotate(45deg);
+}
+
+.d-tree {
+  padding: 0;
+  /* padding-left: 3em; */
+  /* padding-right: 3em; */
+}
+.d-tree-head {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 100%;
+  justify-content: center;
+  text-align: left;
+  font-weight: bold;
+  /* border-collapse: collapse;
+  border: 0.5px solid rgb(108, 126, 148); */
+}
+
+.app-access {
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-top: 3em;
+  justify-content: center;
+  text-align: center;
+  /* font-weight: bold; */
+  font-size: larger;
+}
+
+#detailed {
+  text-align: left;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid rgb(34, 125, 199);
+  width: 100%;
+  font-size: small;
+}
+
+#detailed td,
+#detailed th {
+  border: 1px solid rgb(131, 133, 134);
+  padding: 4px;
+}
+
+#summary {
+  text-align: left;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid rgb(34, 125, 199);
+  width: 30%;
+  font-size: medium;
+}
+
+#summary td,
+#summary th {
+  border: 1px solid rgb(131, 133, 134);
+  padding: 4px;
 }

@@ -116,18 +116,82 @@ export const lbus = [
   // { value: "sg", label: "SG" },
   { value: "my", label: "MY" },
   { value: "ph", label: "PH" },
+  { value: "vn", label: "VN" },
+  { value: "sg", label: "SG" },
 ];
 
 export const apps = [
   { value: "sales", label: "Sales Portal" },
   { value: "hr", label: "HR Portal" },
+  { value: "pulse", label: "Pulse" },
+  { value: "pulsevn", label: "Pulse For Ops" },
+];
+
+export const platform = [
+  { value: "Android", label: "Android" },
+  { value: "Ios", label: "IOS" },
 ];
 
 export const phFiles = [
-  { id: 1, date: "20-Mar-2021",env:"UAT", jsonFilePath:"/data/PH/20-Mar-2021/cucumber.json",reportPath:"/PH/20-Mar-2021/Sales-portal-test-results.pdf"},
-  { id: 2, date: "24-Mar-2021",env:"UAT", jsonFilePath:"/data/PH/24-Mar-2021/cucumber.json",reportPath:"/PH/24-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 1, date: "20-Mar-2021",app:"sales",env:"UAT", jsonFilePath:"/data/PH/20-Mar-2021/cucumber.json",reportPath:"/PH/20-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 2, date: "23-Mar-2021",app:"sales",env:"UAT", jsonFilePath:"/data/PH/23-Mar-2021/cucumber.json",reportPath:"/PH/23-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 3, date: "24-Mar-2021",app:"sales",env:"UAT", jsonFilePath:"/data/PH/24-Mar-2021/cucumber.json",reportPath:"/PH/24-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 4, date: "25-Mar-2021",app:"hr",env:"UAT", jsonFilePath:"/data/PH/25-Mar-2021/cucumber.json",reportPath:"/PH/25-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 5, date: "26-Mar-2021",app:"hr",env:"UAT", jsonFilePath:"/data/PH/26-Mar-2021/cucumber.json",reportPath:"/PH/26-Mar-2021/Sales-portal-test-results.pdf" },
+
 ];
 
 export const myFiles = [
-  { id: 1, date: "22-Mar-2021",env:"UAT", jsonFilePath:"/data/MY/22-Mar-2021/cucumber.json",reportPath:"/MY/22-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 1, date: "22-Mar-2021",app:"sales",env:"UAT", jsonFilePath:"/data/MY/22-Mar-2021/cucumber.json",reportPath:"/MY/22-Mar-2021/Sales-portal-test-results.pdf"},
+];
+
+export const salesPortal = [
+  { id: 1, date: "20-Mar-2021",lbu:"ph",build:"1",env:"UAT", jsonFilePath:"/data/sales/PH/20-Mar-2021/cucumber.json",reportPath:"/sales/PH/20-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 2, date: "23-Mar-2021",lbu:"ph",build:"2",env:"UAT", jsonFilePath:"/data/sales/PH/23-Mar-2021/cucumber.json",reportPath:"/sales/PH/23-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 3, date: "24-Mar-2021",lbu:"ph",build:"3",env:"UAT", jsonFilePath:"/data/sales/PH/24-Mar-2021/cucumber.json",reportPath:"/sales/PH/24-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 4, date: "25-Mar-2021",lbu:"ph",build:"4",env:"UAT", jsonFilePath:"/data/sales/PH/25-Mar-2021/cucumber.json",reportPath:"/sales/PH/25-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 5, date: "26-Mar-2021",lbu:"ph",build:"5",env:"UAT", jsonFilePath:"/data/sales/PH/26-Mar-2021/cucumber.json",reportPath:"/sales/PH/26-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 6, date: "02-Mar-2021",lbu:"my",build:"6",env:"UAT", jsonFilePath:"/data/sales/MY/02-Mar-2021/cucumber.json",reportPath:"/sales/MY/02-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 7, date: "04-Mar-2021",lbu:"my",build:"7",env:"UAT", jsonFilePath:"/data/sales/MY/04-Mar-2021/cucumber.json",reportPath:"/sales/MY/04-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 8, date: "08-Mar-2021",lbu:"my",build:"8",env:"UAT", jsonFilePath:"/data/sales/MY/08-Mar-2021/cucumber.json",reportPath:"/sales/MY/08-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 9, date: "12-Mar-2021",lbu:"my",build:"9",env:"UAT", jsonFilePath:"/data/sales/MY/12-Mar-2021/cucumber.json",reportPath:"/sales/MY/12-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 10, date: "22-Mar-2021",lbu:"my",build:"10",env:"UAT", jsonFilePath:"/data/sales/MY/22-Mar-2021/cucumber.json",reportPath:"/sales/MY/22-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 11, date: "24-Feb-2021",lbu:"my",build:"11",env:"UAT", jsonFilePath:"/data/sales/MY/24-Feb-2021/cucumber.json",reportPath:"/sales/MY/24-Feb-2021/Sales-portal-test-results.pdf"},
+  { id: 12, date: "27-Feb-2021",lbu:"my",build:"12",env:"UAT", jsonFilePath:"/data/sales/MY/27-Feb-2021/cucumber.json",reportPath:"/sales/MY/27-Feb-2021/Sales-portal-test-results.pdf"},
+
+];
+
+export const hrPortal = [
+  { id: 1, date: "20-Mar-2021",lbu:"ph",build:"1",env:"UAT", jsonFilePath:"/data/sales/PH/20-Mar-2021/cucumber.json",reportPath:"/sales/PH/20-Mar-2021/Sales-portal-test-results.pdf"},
+  { id: 2, date: "23-Mar-2021",lbu:"ph",build:"2",env:"UAT", jsonFilePath:"/data/sales/PH/23-Mar-2021/cucumber.json",reportPath:"/sales/PH/23-Mar-2021/Sales-portal-test-results.pdf" },
+  { id: 2, date: "24-Mar-2021",lbu:"my",build:"3",env:"UAT", jsonFilePath:"/data/sales/PH/24-Mar-2021/cucumber.json",reportPath:"/sales/PH/24-Mar-2021/Sales-portal-test-results.pdf" },
+];
+
+export const pulse = [
+  { id: 1, date: "16-Apr-2021",lbu:"sg",build:"1",platform:"Android",env:"UAT", jsonFilePath:"/data/pulse/SG/16-Apr-2021/cucumber.json",reportPath:"/pulse/SG/16-Apr-2021/OnePulse-app-test-results.pdf" },
+  { id: 2, date: "19-Apr-2021",lbu:"sg",build:"2",platform:"Android",env:"UAT", jsonFilePath:"/data/pulse/SG/19-Apr-2021/cucumber.json",reportPath:"/pulse/SG/19-Apr-2021/OnePulse-app-test-results.pdf" },
+  { id: 3, date: "19-Apr-2021",lbu:"sg",build:"3",platform:"Android",env:"PRE-PROD", jsonFilePath:"/data/pulse/SG/19-Apr-2021/cucumber_preprod.json",reportPath:"/pulse/SG/19-Apr-2021/OnePulse-Regression_prepod_build.pdf" },
+  { id: 4, date: "24-Mar-2021",lbu:"my",build:"4",platform:"Android",env:"PRE-PROD", jsonFilePath:"/data/pulse/MY/24-Mar-2021/cucumber.json",reportPath:"/pulse/MY/24-Mar-2021/Sales-portal-test-results.pdf" },
+
+];
+
+export const pulseops = [
+  { id: 1, date: "15-Apr-2021",lbu:"vn",build:"1",platform:"Android",env:"UAT", jsonFilePath:"/data/pulseops/VN/15-Apr-2021/cucumber.json",reportPath:"/pulseops/VN/15-Apr-2021/PulseForOps-app-test-results.pdf"},
+];
+
+export const treeHeaders = [
+  {
+      title: 'ID',
+      field: 'id',
+      type: 'number',
+      width: 100
+    }, {
+      title: 'Name',
+      field: 'errorname',
+      type: 'string'
+    }, {
+      title: 'Feature',
+      field: 'featurename',
+      type: 'string'
+    }
 ];
