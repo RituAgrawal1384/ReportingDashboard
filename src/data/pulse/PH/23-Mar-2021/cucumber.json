@@ -1,0 +1,4210 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "comments": [
+          {
+            "line": 4,
+            "value": "#User must be eligible for Critical Illness Benefit - Heart Attack claim"
+          },
+          {
+            "line": 5,
+            "value": "#  Update \"employee.login.id.global\""
+          }
+        ],
+        "before": [
+          {
+            "result": {
+              "duration": 258212528,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 7,
+        "name": "Login to Corporate Pulse Application",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;login-to-corporate-pulse-application",
+        "after": [
+          {
+            "result": {
+              "duration": 120140,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 44481539227,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "Launch Corporate Pulse Application",
+            "match": {
+              "location": "BaseSteps.launchCorporatePulseApp()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 5002950058,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "I wait 5 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "5",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 4040010008,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "I select the lbu in corporate pulse app",
+            "match": {
+              "location": "LoginSteps.selectLBU()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2487098815,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I enter \"${employee.policy.login.combogold.id}\" email id in pulse app",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${employee.policy.login.combogold.id}",
+                  "offset": 9
+                }
+              ],
+              "location": "LoginSteps.enterEmailId(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1695695016,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "I click on Submit button on app",
+            "match": {
+              "location": "LoginSteps.clickOnSubmitButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "output": [
+              "Assigning value OTP Verification to variable EMAIL_SUBJECT"
+            ],
+            "result": {
+              "duration": 516793,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "I assign \"OTP Verification\" to variable \"EMAIL_SUBJECT\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "OTP Verification",
+                  "offset": 10
+                },
+                {
+                  "val": "EMAIL_SUBJECT",
+                  "offset": 41
+                }
+              ],
+              "location": "ConfigvariableSteps.assignValueToVariable(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "output": [
+              "Mailinator url is https://www.mailinator.com/v3/index.jsp?zone\u003dpublic\u0026query\u003dsdkemp111",
+              "Email OTP is 130420"
+            ],
+            "result": {
+              "duration": 50067690845,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "I read employee OTP email from \"${employee.policy.login.combogold.id}\" in Mailinator and get the otp into \"OTP\" in employee application",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${employee.policy.login.combogold.id}",
+                  "offset": 32
+                },
+                {
+                  "val": "OTP",
+                  "offset": 107
+                }
+              ],
+              "location": "CPEmailReadingSteps.readEmpOTPFromMailinator(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 15037487088,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "I enter otp as \"${OTP}\" in pulse app",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${OTP}",
+                  "offset": 16
+                }
+              ],
+              "location": "LoginSteps.enterOtp(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 3961281438,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "I verify following texts are displayed on \"Group Insurance\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Group Insurance",
+                  "offset": 43
+                }
+              ],
+              "location": "LoginSteps.verifyTexts(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${how.can.help.text}"
+                ],
+                "line": 17
+              }
+            ],
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 99323,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 20,
+        "name": "Navigate to make a claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;navigate-to-make-a-claim-screen",
+        "after": [
+          {
+            "result": {
+              "duration": 58353,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1981428983,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "I click on \"${homescreen.make.claim.text}\" tile on home page",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${homescreen.make.claim.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnTileOnHomePage(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 6223836487,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "I verify following texts are displayed on \"Make a Claim\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Make a Claim",
+                  "offset": 43
+                }
+              ],
+              "location": "LoginSteps.verifyTexts(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${make.claim.text}"
+                ],
+                "line": 23
+              },
+              {
+                "cells": [
+                  "${list.claim.type.text}"
+                ],
+                "line": 24
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 4732881634,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "I scroll down",
+            "match": {
+              "location": "BaseSteps.scrollDown()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 80365,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 27,
+        "name": "Verify employee can select Critical Illness Benefit- Heart Attack claim",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-employee-can-select-critical-illness-benefit--heart-attack-claim",
+        "after": [
+          {
+            "result": {
+              "duration": 45961,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1942147153,
+              "status": "passed"
+            },
+            "line": 28,
+            "name": "I click on \"${claimType.ci}\" button on app",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${claimType.ci}",
+                  "offset": 12
+                }
+              ],
+              "location": "LoginSteps.clickOnButton(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 4316284870,
+              "status": "passed"
+            },
+            "line": 29,
+            "name": "I scroll up",
+            "match": {
+              "location": "BaseSteps.scrollUp()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 5847317919,
+              "status": "passed"
+            },
+            "line": 30,
+            "name": "I verify following texts are displayed on \"Critical Illness\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Critical Illness",
+                  "offset": 43
+                }
+              ],
+              "location": "LoginSteps.verifyTexts(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${make.claim.text}"
+                ],
+                "line": 31
+              },
+              {
+                "cells": [
+                  "${claimType.ci.subtype.text}"
+                ],
+                "line": 32
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1299994541,
+              "status": "passed"
+            },
+            "line": 33,
+            "name": "I click on \"${ci.type.heart.attack.text}\" button",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${ci.type.heart.attack.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickButton(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1028980419,
+              "status": "passed"
+            },
+            "line": 34,
+            "name": "I click on Arrow button",
+            "match": {
+              "location": "MakeAClaimSteps.clickOnArrowButton()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 83323,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 68,
+        "name": "Verify employee can upload \"${doc.claimantStatement}\" file for Critical Illness Benefit claim",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-employee-can-upload-\"\u003cdocumentname\u003e\"-file-for-critical-illness-benefit-claim;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 54480,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 7595468185,
+              "status": "passed"
+            },
+            "line": 39,
+            "name": "I click on Add a File button for \"${doc.claimantStatement}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.claimantStatement}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1771633468,
+              "status": "passed"
+            },
+            "line": 40,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 41
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 42
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 432737964,
+              "status": "passed"
+            },
+            "line": 43,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 23551228168,
+              "status": "passed"
+            },
+            "line": 44,
+            "name": "I give camera permission",
+            "match": {
+              "location": "BaseSteps.giveCameraPermission()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14644408358,
+              "status": "passed"
+            },
+            "line": 45,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 46361757771,
+              "status": "passed"
+            },
+            "line": 46,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000242337,
+              "status": "passed"
+            },
+            "line": 47,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 14506351795,
+              "status": "passed"
+            },
+            "line": 48,
+            "name": "I click on Add another file button for \"${doc.claimantStatement}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.claimantStatement}",
+                  "offset": 40
+                }
+              ],
+              "location": "MakeAClaimSteps.clickAnotherFileButtonForDoc(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1795755315,
+              "status": "passed"
+            },
+            "line": 49,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 50
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 51
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 426193535,
+              "status": "passed"
+            },
+            "line": 52,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 19597513506,
+              "status": "passed"
+            },
+            "line": 53,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 45171487650,
+              "status": "passed"
+            },
+            "line": 54,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000214825,
+              "status": "passed"
+            },
+            "line": 55,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 58251,
+              "status": "passed"
+            },
+            "line": 56,
+            "name": "I verify arrow button is \"disabled\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "disabled",
+                  "offset": 26
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyArrowButtonStatus(String)"
+            },
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 18012192912,
+              "status": "passed"
+            },
+            "line": 57,
+            "name": "I click on three dot button for \"${doc.claimantStatement}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.claimantStatement}",
+                  "offset": 33
+                }
+              ],
+              "location": "MakeAClaimSteps.clickThreeDotButtons_HeaderName(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1240988139,
+              "status": "passed"
+            },
+            "line": 58,
+            "name": "I click on \"${retake.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${retake.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 45677082794,
+              "status": "passed"
+            },
+            "line": 59,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000235160,
+              "status": "passed"
+            },
+            "line": 60,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 18335578424,
+              "status": "passed"
+            },
+            "line": 61,
+            "name": "I click on three dot button for \"${doc.claimantStatement}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.claimantStatement}",
+                  "offset": 33
+                }
+              ],
+              "location": "MakeAClaimSteps.clickThreeDotButtons_HeaderName(String)"
+            },
+            "matchedColumns": [
+              2
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1304368273,
+              "status": "passed"
+            },
+            "line": 62,
+            "name": "I click on \"${delete.file.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${delete.file.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1616415244,
+              "status": "passed"
+            },
+            "line": 63,
+            "name": "I click on \"${delete.modal.button}\" button on modal popup window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${delete.modal.button}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickButtonOnPopUp(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000226362,
+              "status": "passed"
+            },
+            "line": 64,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1305395815,
+              "status": "passed"
+            },
+            "line": 65,
+            "name": "I verify Add another file button displayed for \"${doc.claimantStatement}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.claimantStatement}",
+                  "offset": 48
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyAddAnotherFileButtonDisplayed(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 117806,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 83,
+        "name": "Verify the \u003cScenario Name\u003e attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 22776,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 7278736089,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "I click on Add a File button for \"${doc.idOfBeneficiary}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.idOfBeneficiary}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1618261017,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 73
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 74
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 381017358,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14325894035,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 45917984072,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000225749,
+              "status": "passed"
+            },
+            "line": 78,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 91322,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "I verify following information text \"\" is displayed for \"${doc.idOfBeneficiary}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "",
+                  "offset": 37
+                },
+                {
+                  "val": "${doc.idOfBeneficiary}",
+                  "offset": 57
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyInformationText(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 79447,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 84,
+        "name": "Verify the \u003cScenario Name\u003e attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;3",
+        "after": [
+          {
+            "result": {
+              "duration": 23680,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 7291059582,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "I click on Add a File button for \"${doc.med\u0026LabRecords}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.med\u0026LabRecords}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1672097833,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 73
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 74
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 403365924,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14340633675,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 45343538455,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000243975,
+              "status": "passed"
+            },
+            "line": 78,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 93689,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "I verify following information text \"\" is displayed for \"${doc.med\u0026LabRecords}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "",
+                  "offset": 37
+                },
+                {
+                  "val": "${doc.med\u0026LabRecords}",
+                  "offset": 57
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyInformationText(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 79180,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 85,
+        "name": "Verify the \u003cScenario Name\u003e attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;4",
+        "after": [
+          {
+            "result": {
+              "duration": 30927,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 28223415051,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "I click on Add a File button for \"${doc.cardiologist}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.cardiologist}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1850174952,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 73
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 74
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 316810763,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 13572246672,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 44927508798,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000205671,
+              "status": "passed"
+            },
+            "line": 78,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 91075,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "I verify following information text \"\" is displayed for \"${doc.cardiologist}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "",
+                  "offset": 37
+                },
+                {
+                  "val": "${doc.cardiologist}",
+                  "offset": 57
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyInformationText(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 56414,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 86,
+        "name": "Verify the \u003cScenario Name\u003e attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;5",
+        "after": [
+          {
+            "result": {
+              "duration": 32964,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 7701363965,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "I click on Add a File button for \"${doc.ecg}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.ecg}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1592209980,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 73
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 74
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 463384193,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 13891138409,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 44740250356,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000256764,
+              "status": "passed"
+            },
+            "line": 78,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 87414,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "I verify following information text \"\" is displayed for \"${doc.ecg}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "",
+                  "offset": 37
+                },
+                {
+                  "val": "${doc.ecg}",
+                  "offset": 57
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyInformationText(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 75236,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 87,
+        "name": "Verify the \u003cScenario Name\u003e attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;6",
+        "after": [
+          {
+            "result": {
+              "duration": 23023,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 7654053518,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "I click on Add a File button for \"${doc.cardiacEnzyme}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.cardiacEnzyme}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1656599215,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 73
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 74
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 424198649,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 13863104685,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 45383597649,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000234740,
+              "status": "passed"
+            },
+            "line": 78,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 67663,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "I verify following information text \"\" is displayed for \"${doc.cardiacEnzyme}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "",
+                  "offset": 37
+                },
+                {
+                  "val": "${doc.cardiacEnzyme}",
+                  "offset": 57
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyInformationText(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 63860,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 88,
+        "name": "Verify the \u003cScenario Name\u003e attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;7",
+        "after": [
+          {
+            "result": {
+              "duration": 31283,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 28661018957,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "I click on Add a File button for \"${doc.angiogram}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.angiogram}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 2161068629,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 73
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 74
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 405754092,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14136863034,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 44813419707,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000240230,
+              "status": "passed"
+            },
+            "line": 78,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 67587,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "I verify following information text \"\" is displayed for \"${doc.angiogram}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "",
+                  "offset": 37
+                },
+                {
+                  "val": "${doc.angiogram}",
+                  "offset": 57
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyInformationText(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 79825,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 89,
+        "name": "Verify the \u003cScenario Name\u003e attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;8",
+        "after": [
+          {
+            "result": {
+              "duration": 45660,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 7802563230,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "I click on Add a File button for \"${doc.echocardiogram.ifAny}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.echocardiogram.ifAny}",
+                  "offset": 34
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnAddFileButtonForOption(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1610253486,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "I verify following options are displayed on upload document popup modal window",
+            "match": {
+              "location": "MakeAClaimSteps.verifyTextOnUploadDocPopUpAlert(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${take.photo.text}"
+                ],
+                "line": 73
+              },
+              {
+                "cells": [
+                  "${upload.photo.text}"
+                ],
+                "line": 74
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 358949434,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "I click on \"${take.photo.text}\" option on upload document popup modal window",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${take.photo.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnUploadDocOption(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 13892685398,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "I click turn on location tags option",
+            "match": {
+              "location": "BaseSteps.iClickTurnOnLocationTagsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 45403146951,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "I take a photo from camera",
+            "match": {
+              "location": "BaseSteps.takePhotoFromCamera()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000212480,
+              "status": "passed"
+            },
+            "line": 78,
+            "name": "I wait 2 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1952290534,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "I verify following information text \"${doc.echocardiogram.infoText}\" is displayed for \"${doc.echocardiogram.ifAny}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.echocardiogram.infoText}",
+                  "offset": 37
+                },
+                {
+                  "val": "${doc.echocardiogram.ifAny}",
+                  "offset": 87
+                }
+              ],
+              "location": "MakeAClaimSteps.verifyInformationText(String,String)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ],
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 81829,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 92,
+        "name": "Verify the static content in Final Summary - Critical Illness Benefit claim",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-static-content-in-final-summary---critical-illness-benefit-claim",
+        "after": [
+          {
+            "result": {
+              "duration": 47882,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1312601023,
+              "status": "passed"
+            },
+            "line": 93,
+            "name": "I click on Arrow button",
+            "match": {
+              "location": "MakeAClaimSteps.clickOnArrowButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 5000335713,
+              "status": "passed"
+            },
+            "line": 94,
+            "name": "I wait 5 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "5",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 10154488464,
+              "status": "passed"
+            },
+            "line": 95,
+            "name": "I verify following text are displayed on \"Final Summary\" Screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Final Summary",
+                  "offset": 42
+                }
+              ],
+              "location": "MyCoverageSteps.verifyfollowingtextdisplayedonScreen(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${make.claim.text}"
+                ],
+                "line": 96
+              },
+              {
+                "cells": [
+                  "${finalSummary.text}"
+                ],
+                "line": 97
+              },
+              {
+                "cells": [
+                  "${list.claim.type.text}"
+                ],
+                "line": 98
+              },
+              {
+                "cells": [
+                  "${claimType.ci}"
+                ],
+                "line": 99
+              },
+              {
+                "cells": [
+                  "${ci.type.heart.attack.text}"
+                ],
+                "line": 100
+              },
+              {
+                "cells": [
+                  "${myClaim.view.supportingDocs}"
+                ],
+                "line": 101
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3640125550,
+              "status": "passed"
+            },
+            "line": 102,
+            "name": "I verify following buttons are displayed on \"Final Summary\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Final Summary",
+                  "offset": 45
+                }
+              ],
+              "location": "LoginSteps.verifyButtons(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${back.button.text}"
+                ],
+                "line": 103
+              },
+              {
+                "cells": [
+                  "${save.button.text}"
+                ],
+                "line": 104
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1871273826,
+              "status": "passed"
+            },
+            "line": 105,
+            "name": "I scroll up till \"${myClaim.view.supportingDocs}\" element displayed",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${myClaim.view.supportingDocs}",
+                  "offset": 18
+                }
+              ],
+              "location": "MakeAClaimSteps.scrollTillElementDisplayed(String)"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 77774,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 114,
+        "name": "Verify the ${doc.claimantStatement} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 49144,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3827805963,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.claimantStatement}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.claimantStatement}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2703964531,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 74936,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 115,
+        "name": "Verify the ${doc.idOfBeneficiary} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;3",
+        "after": [
+          {
+            "result": {
+              "duration": 43361,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3445996475,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.idOfBeneficiary}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.idOfBeneficiary}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2404020745,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 68054,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 116,
+        "name": "Verify the ${doc.med\u0026LabRecords} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;4",
+        "after": [
+          {
+            "result": {
+              "duration": 34110,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3738263691,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.med\u0026LabRecords}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.med\u0026LabRecords}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2343285517,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 541082,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 117,
+        "name": "Verify the ${doc.cardiologist} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;5",
+        "after": [
+          {
+            "result": {
+              "duration": 443389,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 24775324086,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.cardiologist}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.cardiologist}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2304663885,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 128476,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 118,
+        "name": "Verify the ${doc.ecg} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;6",
+        "after": [
+          {
+            "result": {
+              "duration": 102132,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 4610730642,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.ecg}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.ecg}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2327985893,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 66950,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 119,
+        "name": "Verify the ${doc.cardiacEnzyme} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;7",
+        "after": [
+          {
+            "result": {
+              "duration": 37921,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 4245834611,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.cardiacEnzyme}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.cardiacEnzyme}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2273988380,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 50881,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 120,
+        "name": "Verify the ${doc.angiogram} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;8",
+        "after": [
+          {
+            "result": {
+              "duration": 34083,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 4740948351,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.angiogram}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.angiogram}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2356602178,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 65066,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 121,
+        "name": "Verify the ${doc.echocardiogram.ifAny} attachments in the Critical Illness Benefit - Final Summary",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---final-summary;;9",
+        "after": [
+          {
+            "result": {
+              "duration": 27496,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3824822159,
+              "status": "passed"
+            },
+            "line": 109,
+            "name": "I click on eye icon based on Header name \"${doc.echocardiogram.ifAny}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.echocardiogram.ifAny}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2320617494,
+              "status": "passed"
+            },
+            "line": 110,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 83041,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 124,
+        "name": "Verify Critical Illness Benefit Claim Submission - confirmation screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-critical-illness-benefit-claim-submission---confirmation-screen",
+        "after": [
+          {
+            "result": {
+              "duration": 26352,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 2312864382,
+              "status": "passed"
+            },
+            "line": 125,
+            "name": "I click on \"${submit.button.texts}\" button in final summary screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${submit.button.texts}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickSubmitButton_FinalSummary(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 15000275640,
+              "status": "passed"
+            },
+            "line": 126,
+            "name": "I wait 15 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "15",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 12985395292,
+              "status": "passed"
+            },
+            "line": 127,
+            "name": "I verify following texts are displayed on \"Confirmation\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Confirmation",
+                  "offset": 43
+                }
+              ],
+              "location": "LoginSteps.verifyTexts(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${confirmation.text}"
+                ],
+                "line": 128
+              },
+              {
+                "cells": [
+                  "${confirmation.whatsNext.text}"
+                ],
+                "line": 129
+              },
+              {
+                "cells": [
+                  "${confirmation.whatsNext.description}"
+                ],
+                "line": 130
+              },
+              {
+                "cells": [
+                  "${claim.referenceNum.text}"
+                ],
+                "line": 131
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "reference number is: CLMPLUK819601"
+            ],
+            "result": {
+              "duration": 1735236045,
+              "status": "passed"
+            },
+            "line": 132,
+            "name": "I get the reference number into variable \"REFERENCE_NO\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "REFERENCE_NO",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.getClaimRefNumber(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1027216662,
+              "status": "passed"
+            },
+            "line": 133,
+            "name": "I verify the \"Claim Reference Number\" contains the following",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Claim Reference Number",
+                  "offset": 14
+                }
+              ],
+              "location": "MakeAClaimSteps.iVerifyTheContainsTheFollowing(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${claim.prefix}"
+                ],
+                "line": 134
+              }
+            ],
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 89374,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 136,
+        "name": "close the Dental Claim Submission - confirmation screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;close-the-dental-claim-submission---confirmation-screen",
+        "after": [
+          {
+            "result": {
+              "duration": 27324,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 4229984677,
+              "status": "passed"
+            },
+            "line": 137,
+            "name": "I scroll up",
+            "match": {
+              "location": "BaseSteps.scrollUp()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 3014490960,
+              "status": "passed"
+            },
+            "line": 138,
+            "name": "I click on close button in Next Steps screen",
+            "match": {
+              "location": "MakeAClaimSteps.clickCloseButton_Nextstepsscreen()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 69483,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 141,
+        "name": "Verify the Submitted Critical Illness Benefit claim is displayed in My Claim - Submitted screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-submitted-critical-illness-benefit-claim-is-displayed-in-my-claim---submitted-screen",
+        "after": [
+          {
+            "result": {
+              "duration": 37265,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "output": [
+              "Parsed date is: {},ISO resolved to 2021-03-18",
+              "formatted date is: 03/18/2021"
+            ],
+            "result": {
+              "duration": 201474083,
+              "status": "passed"
+            },
+            "line": 142,
+            "name": "I generate device date in format \"MM/dd/YYYY\" and assign to variable \"CLAIM_DATE\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "MM/dd/YYYY",
+                  "offset": 34
+                },
+                {
+                  "val": "CLAIM_DATE",
+                  "offset": 70
+                }
+              ],
+              "location": "BaseSteps.getDeviceDateAndTime(String,String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2723776107,
+              "status": "passed"
+            },
+            "line": 143,
+            "name": "I click on \"${homescreen.review.claim.text}\" tile on home page",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${homescreen.review.claim.text}",
+                  "offset": 12
+                }
+              ],
+              "location": "MakeAClaimSteps.clickOnTileOnHomePage(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 5000234428,
+              "status": "passed"
+            },
+            "line": 144,
+            "name": "I wait 5 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "5",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 4223845198,
+              "status": "passed"
+            },
+            "line": 145,
+            "name": "I scroll up",
+            "match": {
+              "location": "BaseSteps.scrollUp()"
+            },
+            "keyword": "And "
+          },
+          {
+            "output": [
+              "claim date is: 03/18/2021"
+            ],
+            "result": {
+              "duration": 1284417908,
+              "status": "passed"
+            },
+            "line": 146,
+            "name": "I verify claim date \"${CLAIM_DATE}\" is displaying correctly for the submitted/drafted claim \"${claimType.ci}\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${CLAIM_DATE}",
+                  "offset": 21
+                },
+                {
+                  "val": "${claimType.ci}",
+                  "offset": 93
+                }
+              ],
+              "location": "MakeAClaimSteps.verifySubmittedClaimDate(String,String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 8668221932,
+              "status": "passed"
+            },
+            "line": 147,
+            "name": "I verify following texts are displayed on \"My Claims- Submitted\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "My Claims- Submitted",
+                  "offset": 43
+                }
+              ],
+              "location": "LoginSteps.verifyTexts(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${claimType.ci}"
+                ],
+                "line": 148
+              },
+              {
+                "cells": [
+                  "${myClaims.submitted}"
+                ],
+                "line": 149
+              },
+              {
+                "cells": [
+                  "${myClaims.date.text}"
+                ],
+                "line": 150
+              }
+            ],
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 52476,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 152,
+        "name": "verify claim details are displaying correctly for submitted claim",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-claim-details-are-displaying-correctly-for-submitted-claim",
+        "after": [
+          {
+            "result": {
+              "duration": 34016,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1051202074,
+              "status": "passed"
+            },
+            "line": 153,
+            "name": "I click on created \"${claimType.ci}\" claim on My Claims screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${claimType.ci}",
+                  "offset": 20
+                }
+              ],
+              "location": "MakeAClaimSteps.iClickOnCreatedClaimOnMyClaimsScreen(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 5000939205,
+              "status": "passed"
+            },
+            "line": 154,
+            "name": "I wait 5 sec in employee portal",
+            "match": {
+              "arguments": [
+                {
+                  "val": "5",
+                  "offset": 7
+                }
+              ],
+              "location": "BaseSteps.waitTime(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1290027209,
+              "status": "passed"
+            },
+            "line": 155,
+            "name": "I scroll up till \"${myClaim.text}\" element displayed for claim journey",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${myClaim.text}",
+                  "offset": 18
+                }
+              ],
+              "location": "MakeAClaimSteps.scrollUpTillElementDisplayedWithDynamicOffset(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 30838455009,
+              "status": "passed"
+            },
+            "comments": [
+              {
+                "line": 156,
+                "value": "#    Then I scroll down till \"${myClaim.text}\" element displayed Claim"
+              }
+            ],
+            "line": 157,
+            "name": "I verify following texts are displayed on \"Critical Illness Benefit\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Critical Illness Benefit",
+                  "offset": 43
+                }
+              ],
+              "location": "LoginSteps.verifyTexts(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${myClaim.view.claimType}"
+                ],
+                "line": 158
+              },
+              {
+                "cells": [
+                  "${claimType.ci}"
+                ],
+                "line": 159
+              },
+              {
+                "cells": [
+                  "${myClaim.view.claimDate}"
+                ],
+                "line": 160
+              },
+              {
+                "cells": [
+                  "${CLAIM_DATE}"
+                ],
+                "line": 161
+              },
+              {
+                "cells": [
+                  "${myClaim.view.originalReceipt}"
+                ],
+                "line": 162
+              },
+              {
+                "cells": [
+                  "${myClaim.view.originalReceipt.no}"
+                ],
+                "line": 163
+              },
+              {
+                "cells": [
+                  "${myClaim.view.claimNumber}"
+                ],
+                "line": 164
+              },
+              {
+                "cells": [
+                  "${REFERENCE_NO}"
+                ],
+                "line": 165
+              },
+              {
+                "cells": [
+                  "${ci.type.heart.attack.text}"
+                ],
+                "line": 166
+              }
+            ],
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 77744,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 176,
+        "name": "Verify the ${doc.claimantStatement} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 27702,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 2363438610,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.claimantStatement}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.claimantStatement}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2297854075,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 408112,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 177,
+        "name": "Verify the ${doc.idOfBeneficiary} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;3",
+        "after": [
+          {
+            "result": {
+              "duration": 27104,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 22962557179,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.idOfBeneficiary}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.idOfBeneficiary}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2262345550,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 45326,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 178,
+        "name": "Verify the ${doc.med\u0026LabRecords} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;4",
+        "after": [
+          {
+            "result": {
+              "duration": 33099,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3660297140,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.med\u0026LabRecords}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.med\u0026LabRecords}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2280621274,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 81490,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 179,
+        "name": "Verify the ${doc.cardiologist} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;5",
+        "after": [
+          {
+            "result": {
+              "duration": 26204,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 2927926395,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.cardiologist}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.cardiologist}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2370514959,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 46277,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 180,
+        "name": "Verify the ${doc.ecg} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;6",
+        "after": [
+          {
+            "result": {
+              "duration": 34271,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3437214059,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.ecg}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.ecg}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2313430063,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 61957,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 181,
+        "name": "Verify the ${doc.cardiacEnzyme} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;7",
+        "after": [
+          {
+            "result": {
+              "duration": 26470,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3184058159,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.cardiacEnzyme}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.cardiacEnzyme}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2384581881,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 62694,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 182,
+        "name": "Verify the ${doc.angiogram} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;8",
+        "after": [
+          {
+            "result": {
+              "duration": 34128,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 2856858929,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.angiogram}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.angiogram}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2326051502,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 67785,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 183,
+        "name": "Verify the ${doc.echocardiogram.ifAny} attachments in the Critical Illness Benefit - my claim screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-\u003cscenario-name\u003e-attachments-in-the-critical-illness-benefit---my-claim-screen;;9",
+        "after": [
+          {
+            "result": {
+              "duration": 26238,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 23745221618,
+              "status": "passed"
+            },
+            "line": 171,
+            "name": "I click on eye icon based on Header name \"${doc.echocardiogram.ifAny}\" document",
+            "match": {
+              "arguments": [
+                {
+                  "val": "${doc.echocardiogram.ifAny}",
+                  "offset": 42
+                }
+              ],
+              "location": "MakeAClaimSteps.clickEyeHeaderName(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2561441462,
+              "status": "passed"
+            },
+            "line": 172,
+            "name": "I click the close icon in Uploaded view Images",
+            "match": {
+              "location": "MakeAClaimSteps.ClickClosebutton_AttachedImage()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@corporate_pulse_ph_regression"
+          },
+          {
+            "line": 1,
+            "name": "@ph_submit_claim_journey"
+          },
+          {
+            "line": 1,
+            "name": "@corporate_pulse_make_criticalIllness_claim"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 61376,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 185,
+        "name": "Verify the Submitted Death Benefit claim is displayed in My Claim Reference No - Submitted screen",
+        "description": "",
+        "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application;verify-the-submitted-death-benefit-claim-is-displayed-in-my-claim-reference-no---submitted-screen",
+        "after": [
+          {
+            "result": {
+              "duration": 34386,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 6773418800,
+              "status": "passed"
+            },
+            "line": 186,
+            "name": "I verify following texts are displayed on \"My Claims\" screen",
+            "match": {
+              "arguments": [
+                {
+                  "val": "My Claims",
+                  "offset": 43
+                }
+              ],
+              "location": "LoginSteps.verifyTexts(String,DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "${claim.referenceNum.text}"
+                ],
+                "line": 187
+              },
+              {
+                "cells": [
+                  "${REFERENCE_NO}"
+                ],
+                "line": 188
+              }
+            ],
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Verify Make a Critical Illness Benefit claim functionality on Corporate Pulse Application",
+    "description": "",
+    "id": "verify-make-a-critical-illness-benefit-claim-functionality-on-corporate-pulse-application",
+    "keyword": "Feature",
+    "uri": "features/ph/MakeAClaim/CP_MakeAClaim_Combo_Critical Illness.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@corporate_pulse_make_criticalIllness_claim"
+      },
+      {
+        "line": 1,
+        "name": "@corporate_pulse_ph_regression"
+      },
+      {
+        "line": 1,
+        "name": "@ph_submit_claim_journey"
+      }
+    ]
+  }
+]

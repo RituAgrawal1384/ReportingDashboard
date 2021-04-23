@@ -1,0 +1,111 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 126546126,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.checkReporterRunning(Scenario)"
+            }
+          }
+        ],
+        "line": 3,
+        "name": "Verify  that User is able to Launch app and access My Tasks / Inquiry",
+        "description": "",
+        "id": "verify-user-is-able-to-launch-the-pulse-ops-app-and-verify-screen-dashboard;verify--that-user-is-able-to-launch-app-and-access-my-tasks-/-inquiry",
+        "after": [
+          {
+            "result": {
+              "duration": 301197,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberHook.afterTest(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 81967039,
+              "error_message": "com.prudential.tap.exception.TapException: Driver not create for [ios], [null]\n\tat com.pru.app.screens.TestBasePage.launchApp(TestBasePage.java:128)\n\tat com.pru.app.stepdef.BaseSteps.launchCorporatePulseApp(BaseSteps.java:19)\n\tat ✽.Given Launch \"Pulse_Ops\" Mobile Application(features/Mobile/VerifyScreenMyTask.feature:4)\n",
+              "status": "failed"
+            },
+            "line": 4,
+            "name": "Launch \"Pulse_Ops\" Mobile Application",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Pulse_Ops",
+                  "offset": 8
+                }
+              ],
+              "location": "BaseSteps.launchCorporatePulseApp(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 5,
+            "name": "user enters credentials in Pulse Ops app",
+            "match": {
+              "location": "LoginSteps.userEntersCredentials(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "UserName",
+                  "${ops.login.username}"
+                ],
+                "line": 6
+              },
+              {
+                "cells": [
+                  "Password",
+                  "${ops.password}"
+                ],
+                "line": 7
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 8,
+            "name": "I verify screen dashboard correct",
+            "match": {
+              "location": "HomeSteps.Iverifyscreendashboardcorrect()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 2,
+            "name": "@pulseopsMobile"
+          },
+          {
+            "line": 2,
+            "name": "@Dashboard"
+          }
+        ]
+      }
+    ],
+    "name": "Verify User is able to launch the Pulse Ops app and verify screen dashboard",
+    "description": "",
+    "id": "verify-user-is-able-to-launch-the-pulse-ops-app-and-verify-screen-dashboard",
+    "keyword": "Feature",
+    "uri": "features/Mobile/VerifyScreenMyTask.feature"
+  }
+]
