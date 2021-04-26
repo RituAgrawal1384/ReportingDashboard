@@ -6,31 +6,42 @@ import { Link } from "react-router-dom";
 
 const NavBar = ({ totalCounters }) => {
   console.log("NavBar - Rendered");
+  // const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+  // const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+
   return (
-    // <nav className="navbar navbar-light bg-light">
-    //   <a className="navbar-brand" href="#test">
-    //     Navbar{" "}
-    //     <span className="badge badge-pill badge-secondary">
-    //       {totalCounters}
-    //     </span>
-    //   </a>
-    // </nav>
-
-    //second option
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <span className="navbar-brand">Automation Report</span>
-      {/* <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button> */}
-
+      <div class="navbar-header">
+        <span className="navbar-brand">Automation Report</span>
+        {/* <button
+          class="custom-toggler navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded={!isNavCollapsed ? true : false}
+          aria-label="Toggle navigation"
+          onClick={handleNavCollapse}
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button> */}
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      {/* <div
+        class={'${isNavCollapsed ? "collapse" : ""} navbar-collapse'}
+        id="navbarNavAltMarkup"
+      > */}
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <Link className="nav-item nav-link active" to="/Home">

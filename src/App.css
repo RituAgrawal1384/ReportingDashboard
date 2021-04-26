@@ -161,8 +161,8 @@ th {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   border: 1px solid rgb(34, 125, 199);
-  width: 30%;
-  font-size: medium;
+  width: 50%;
+  font-size: small;
 }
 
 #summary td,
