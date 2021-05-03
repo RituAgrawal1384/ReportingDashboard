@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
 import Select from "react-select";
+import { Doughnut } from "react-chartjs-2";
+import "chartjs-plugin-labels";
 
 class DetailedReport extends Component {
   state = {};
@@ -75,6 +77,12 @@ class DetailedReport extends Component {
         : this.setState({ overallstatus: "Passed" });
 
       this.setState({ totalFeatures: data.length });
+      let count = data.reduce(
+        (val, itm) => (itm.status === "Passed" ? val + 1 : val + 0),
+        0
+      );
+      this.setState({ totalPassedFeatures: count });
+
       sum = data.reduce(function(a, b) {
         return {
           exectime: (parseFloat(a.exectime) + parseFloat(b.exectime)).toFixed(
@@ -225,9 +233,50 @@ class DetailedReport extends Component {
     });
   }
   render() {
+    let featureData = {
+      labels: ["Passed", "Failed"],
+      datasets: [
+        {
+          label: "Report",
+          backgroundColor: ["#2FDE00", "red"],
+          hoverBackgroundColor: ["#175000", "#B21F00"],
+          data: [
+            this.state.totalPassedFeatures,
+            parseFloat(this.state.totalFeatures) -
+              parseFloat(this.state.totalPassedFeatures),
+          ],
+        },
+      ],
+    };
+    let scenarioData = {
+      labels: ["Passed", "Failed"],
+      datasets: [
+        {
+          label: "Report",
+          backgroundColor: ["#2FDE00", "red"],
+          hoverBackgroundColor: ["#175000", "#B21F00"],
+          data: [this.state.totalSCPassedCount, this.state.totalSCFailedCount],
+        },
+      ],
+    };
+    let stepsData = {
+      labels: ["Passed", "Failed", "Skipped"],
+      datasets: [
+        {
+          label: "Report",
+          backgroundColor: ["#2FDE00", "red", "grey"],
+          hoverBackgroundColor: ["#175000", "#B21F00", "pink"],
+          data: [
+            this.state.totalStepPassedCount,
+            this.state.totalStepFailedCount,
+            this.state.totalStepSkippedCount,
+          ],
+        },
+      ],
+    };
     return (
       <div className="stock-container">
-        <h2 id="title"> Detailed Report</h2>
+        {/* <h3 id="title"> Detailed Report</h3> */}
         <div className="col-sm-3">
           <Select
             defaultValue={this.state.selectedOption1}
@@ -237,6 +286,96 @@ class DetailedReport extends Component {
           />
         </div>
         <h2 id="junk"> </h2>
+
+        {this.state.totalSCFailedCount !== 0 ||
+        this.state.totalSCPassedCount !== 0 ? (
+          <div className="d-flex justify-content-center">
+            <div>
+              <Doughnut
+                width={400}
+                height={200}
+                data={featureData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  title: {
+                    display: true,
+                    text: "Features",
+                    fontSize: 20,
+                    position: "left",
+                  },
+                  legend: {
+                    display: true,
+                    position: "right",
+                  },
+                  plugins: {
+                    labels: {
+                      render: "percentage",
+                      fontColor: ["black", "black"],
+                      precision: 2,
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div>
+              <Doughnut
+                width={400}
+                height={200}
+                data={scenarioData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  title: {
+                    display: true,
+                    text: "Scenarios",
+                    fontSize: 20,
+                    position: "left",
+                  },
+                  legend: {
+                    display: true,
+                    position: "right",
+                  },
+                  plugins: {
+                    labels: {
+                      render: "percentage",
+                      fontColor: ["black", "black"],
+                      precision: 2,
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div>
+              <Doughnut
+                width={400}
+                height={200}
+                data={stepsData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  title: {
+                    display: true,
+                    text: "Steps",
+                    fontSize: 20,
+                    position: "left",
+                  },
+                  legend: {
+                    display: true,
+                    position: "right",
+                  },
+                  plugins: {
+                    labels: {
+                      render: "percentage",
+                      fontColor: ["black", "black", "black"],
+                      precision: 2,
+                    },
+                  },
+                }}
+              />
+            </div>
+          </div>
+        ) : null}
 
         <div>
           <Table id="detailed" classname="w-auto" striped bordered hover>

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import FlashMessage from "react-flash-message";
+// import Blink from "react-blink-text";
 // import Pagination from "react-bootstrap/Pagination";
 class Steps extends Component {
   constructor(props) {
@@ -11,12 +13,16 @@ class Steps extends Component {
       sortBy: "",
       direction: "asc",
       filteredData: props.stepsData,
+      latestLBU: props.latestDateLbu,
+      latestDate: props.latestDate,
     };
   }
 
   componentWillReceiveProps(props) {
     this.setState({
       filteredData: props.stepsData,
+      latestLBU: props.latestDateLbu,
+      latestDate: props.latestDate,
     });
   }
 
@@ -96,9 +102,27 @@ class Steps extends Component {
     // );
     return (
       <div className="stock-container">
-        <h2 id="title">
+        <div className="app-access">
+          <FlashMessage duration={10000} persistOnHover={true}>
+            <p>
+              Please change Application/LBU to see steps specific for
+              Application/LBU
+            </p>
+          </FlashMessage>
+          {/* <Blink
+            color="red"
+            text="Please change Application/LBU to see steps specific for
+              Application/LBU"
+            fontSize="20"
+          >
+            Testing the Blink
+          </Blink> */}
+        </div>
+        <h3 id="title">
           Total Steps: {Object.keys(this.state.filteredData).length}
-        </h2>
+        </h3>
+        <h6>Date: {this.state.latestDate}</h6>
+        <h6>LBU: {this.state.latestLBU}</h6>
         <input
           style={{ width: "400px" }}
           type="text"

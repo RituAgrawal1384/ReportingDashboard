@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Bar } from "react-chartjs-2";
+import "chartjs-plugin-labels";
 // import React from "react";
 // import pdf from "../data/MY/22-Mar-2021/Sales-portal-test-results.pdf";
 
@@ -102,6 +104,9 @@ class Regression extends Component {
       currentPageNumber: 1,
       numItemsPerPage: 20,
       titleFilter: "",
+      defaultDate: props.latestDate,
+      tempLatestDate: props.latestDate,
+      defaultEnv: "UAT",
       envFilter: "",
       filteredData: props.regressionData1,
     };
@@ -110,6 +115,8 @@ class Regression extends Component {
   componentWillReceiveProps(props) {
     this.setState({
       filteredData: props.regressionData1,
+      defaultDate: props.latestDate,
+      tempLatestDate: props.latestDate,
     });
   }
   titleFilterHandler(e) {
@@ -130,6 +137,8 @@ class Regression extends Component {
       this.state.titleFilter !== prevState.titleFilter ||
       this.state.envFilter !== prevState.envFilter
     ) {
+      let filteredDate = "";
+      let filteredEnv = "";
       let filteredData = this.props.regressionData1.filter((step) => {
         if (
           step.date
@@ -139,6 +148,8 @@ class Regression extends Component {
             .toLowerCase()
             .includes(this.state.envFilter.toLowerCase())
         ) {
+          filteredDate = step.date;
+          filteredEnv = step.environment;
           return step;
         }
         return null;
@@ -147,6 +158,13 @@ class Regression extends Component {
       this.setState({
         filteredData: filteredData,
       });
+      filteredDate === ""
+        ? this.setState({ defaultDate: this.state.tempLatestDate })
+        : this.setState({ defaultDate: filteredDate });
+
+      filteredEnv === ""
+        ? this.setState({ defaultEnv: "UAT" })
+        : this.setState({ defaultEnv: filteredEnv });
     }
   }
   renderTableData() {
@@ -234,9 +252,50 @@ class Regression extends Component {
     });
   }
   render() {
+    let lbuData = [];
+    let passedData = [];
+    let failedData = [];
+    this.state.filteredData.filter((step) => {
+      if (
+        step.date
+          .toLowerCase()
+          .includes(this.state.defaultDate.toLowerCase()) &&
+        step.environment
+          .toLowerCase()
+          .includes(this.state.defaultEnv.toLowerCase())
+      ) {
+        lbuData.push(step.lbu);
+        passedData.push(step.totalPassed);
+        failedData.push(step.totalFailed);
+      }
+      return null;
+    });
+    let chartData = {
+      labels: lbuData,
+      datasets: [
+        {
+          label: "Passed",
+          backgroundColor: "#2FDE00",
+          borderColor: "rgba(255,99,132,1)",
+          borderWidth: 1,
+          hoverBackgroundColor: "green",
+          hoverBorderColor: "rgba(255,99,132,1)",
+          data: passedData,
+        },
+        {
+          label: "Failed",
+          backgroundColor: "red",
+          borderColor: "rgba(255,99,132,1)",
+          borderWidth: 1,
+          hoverBackgroundColor: "#B21F00",
+          hoverBorderColor: "rgba(255,99,132,1)",
+          data: failedData,
+        },
+      ],
+    };
     return (
       <div className="stock-container">
-        <h2 id="title">Regression Report</h2>
+        {/* <h3 id="title">Regression Report</h3> */}
         {/* <input
           style={{ width: "300px" }}
           type="text"
@@ -245,6 +304,42 @@ class Regression extends Component {
           value={this.state.titleFilter}
           onChange={this.titleFilterHandler.bind(this)}
         /> */}
+        {this.state.filteredData.length !== 0 ? (
+          <div className="d-flex justify-content-center">
+            <div>
+              <Bar
+                width={1000}
+                height={200}
+                data={chartData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  title: {
+                    display: true,
+                    text:
+                      "Regression Date:" +
+                      this.state.defaultDate +
+                      ", Environment:" +
+                      this.state.defaultEnv,
+                    fontSize: 15,
+                  },
+                  legend: {
+                    display: true,
+                    position: "right",
+                  },
+                  plugins: {
+                    labels: {
+                      render: "percentage",
+                      fontColor: ["black", "black"],
+                      precision: 2,
+                    },
+                  },
+                }}
+              />
+            </div>
+          </div>
+        ) : null}
+
         <table id="regression">
           <tbody>
             <tr>{this.renderTableHeader()}</tr>

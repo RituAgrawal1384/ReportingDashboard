@@ -29,7 +29,7 @@ class App extends Component {
       { id: 4, value: 0 },
     ],
     selectedOption1: lbus[1],
-    selectedOption2: { value: "sales", label: "Sales Portal" },
+    selectedOption2: { value: "pulse", label: "Pulse" },
     selectedOption3:{ value: "Android", label: "Android" },
     latestStepsKpis:[],
     regressionData:[],
@@ -37,6 +37,7 @@ class App extends Component {
     totalFailed:0,
     status:"",
     latestDate:null,
+    latestDateLbu:"",
     failureData:[],
     reportData:[],
     reportDate:[],
@@ -126,7 +127,9 @@ getTotalScenarios1(fileData) {
     this.getFailuresOnLBU();
     this.getDetailedReport();
     let latestReportData = this.getRegressionDataBasedOnLBU();
-     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed, latestDate:latestReportData[0].date});
+    if(latestReportData.length !==0){
+     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed, latestDate:latestReportData[0].date, latestDateLbu:latestReportData[0].lbu});
+    }
   
     }
 
@@ -148,7 +151,7 @@ getTotalScenarios1(fileData) {
       this.getDetailedReport();
      let latestReportData = this.getRegressionDataBasedOnLBU();
      if(latestReportData.length > 0){
-     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed,latestDate:latestReportData[0].date});
+     this.setState({ latestStepsKpis:latestReportData[0].steps, totalPassed:latestReportData[0].passed,totalFailed:latestReportData[0].failed,latestDate:latestReportData[0].date, latestDateLbu:latestReportData[0].lbu});
      }
   
     }
@@ -164,6 +167,10 @@ getTotalScenarios1(fileData) {
                   fData.lbu.toLowerCase().includes(lbu.toLowerCase())
                 ) {
                   return fData;
+                }else if (
+                  "all".includes(lbu.toLowerCase())
+                ){
+                  return salesPortal;
                 }
                 return null;
               });
@@ -175,6 +182,10 @@ getTotalScenarios1(fileData) {
                   fData.lbu.toLowerCase().includes(lbu.toLowerCase())
                 ) {
                   return fData;
+                }else if (
+                  "all".includes(lbu.toLowerCase())
+                ){
+                  return hrPortal;
                 }
                 return null;
               });
@@ -186,7 +197,12 @@ getTotalScenarios1(fileData) {
                   fData.lbu.toLowerCase().includes(lbu.toLowerCase()) && fData.platform.toLowerCase().includes(platform.toLowerCase()) 
                 ) {
                   return fData;
+                }else if (
+                  "all".includes(lbu.toLowerCase()) && fData.platform.toLowerCase().includes(platform.toLowerCase())
+                ){
+                  return fData;
                 }
+                
                 return null;
               });
           break;
@@ -196,6 +212,11 @@ getTotalScenarios1(fileData) {
                 if (
                   fData.lbu.toLowerCase().includes(lbu.toLowerCase()) && fData.platform.toLowerCase().includes(platform.toLowerCase()) 
                 ) {
+                  return fData;
+                }
+                else if (
+                  "all".includes(lbu.toLowerCase()) && fData.platform.toLowerCase().includes(platform.toLowerCase())
+                ){
                   return fData;
                 }
                 return null;
@@ -225,7 +246,7 @@ getTotalScenarios1(fileData) {
         let totalFailed = this.getTotalFailedScenarios1(myLib);
         if(latestDate === fileData.date){
           let latestStepsKpis = this.getStepsKpis(myLib);
-          latestFileData.push({"steps":latestStepsKpis,"passed":totalPassed,"failed":totalFailed,"date":latestDate});
+          latestFileData.push({"steps":latestStepsKpis,"passed":totalPassed,"failed":totalFailed,"date":latestDate,"lbu":fileData.lbu.toUpperCase()});
           // this.setState({ latestStepsKpis, totalPassed,totalFailed});
         
         }
@@ -236,7 +257,7 @@ getTotalScenarios1(fileData) {
           status="passed";
         }
           
-        executionData.push({"id":index1,"date":fileData.date,"lbu":this.state.selectedOption1.label,"build":fileData.build,"environment":fileData.env, "totalScenarios":totalSen,"totalExecTime":totalExec,"totalPassed":totalPassed, "totalFailed":totalFailed, "report":fileData.reportPath,"status":status});
+        executionData.push({"id":index1,"date":fileData.date,"lbu":fileData.lbu.toUpperCase(),"build":fileData.build,"environment":fileData.env, "totalScenarios":totalSen,"totalExecTime":totalExec,"totalPassed":totalPassed, "totalFailed":totalFailed, "report":fileData.reportPath,"status":status});
         index1++;
         return null;  
 
@@ -314,7 +335,7 @@ getTotalScenarios1(fileData) {
      tempData.map((fileData) => {
       let myLib = require('.' + fileData.jsonFilePath);
       let featureData = this.getFailureDetails(myLib);
-      executionData.push({"id":index1,"label":fileData.date + "["+fileData.env+"]","icon": "fa fa-folder","children":featureData});
+      executionData.push({"id":index1,"label":`${fileData.date} [ ${fileData.lbu.toUpperCase()}] [${fileData.env}]`,"icon": "fa fa-folder","children":featureData});
       index1++;
        return null;  
 
@@ -337,8 +358,8 @@ getTotalScenarios1(fileData) {
      tempData.map((fileData) => {
       let myLib = require('.' + fileData.jsonFilePath);
       let featureData = this.getReportFeatureData(myLib);
-      reportData.push({"id":index1,"label":fileData.date + "["+fileData.env+"]","icon": "fa fa-folder","children":featureData});
-      reportDate.push({ value: fileData.date + "["+fileData.env+"]", label: fileData.date + "["+fileData.env+"]" });
+      reportData.push({"id":index1,"label":`${fileData.date} [ ${fileData.lbu.toUpperCase()}] [${fileData.env}]`,"icon": "fa fa-folder","children":featureData});
+      reportDate.push({ value: `${fileData.date} [ ${fileData.lbu.toUpperCase()}] [${fileData.env}]`, label: `${fileData.date} [ ${fileData.lbu.toUpperCase()}] [${fileData.env}]` });
       index1++;
        return null;  
 
@@ -522,7 +543,7 @@ getStepsKpis(fileData) {
       {this.state.isAppAccessible ? (
        <Switch>
         <Route exact path="/Home" render={(props) => (
-              <Home {...props} isAuthed={true} totalPassedSenario={this.state.totalPassed} totalFailedSenario={this.state.totalFailed} latestDate={this.state.latestDate} regressionData1={this.state.regressionData}/>
+              <Home {...props} isAuthed={true} lbu={this.state.selectedOption1} totalPassedSenario={this.state.totalPassed} totalFailedSenario={this.state.totalFailed} latestDate={this.state.latestDate} regressionData1={this.state.regressionData}/>
             )} />
         <Route exact path="/">
           <Redirect to="/Home" />
@@ -532,10 +553,10 @@ getStepsKpis(fileData) {
             )} /> */}
 
         <Route exact path="/Regression" render={(props) => (
-            <Regression {...props} isAuthed={true} regressionData1={this.state.regressionData}/>
+            <Regression {...props} isAuthed={true} regressionData1={this.state.regressionData} latestDate={this.state.latestDate}/>
           )} />
          <Route exact path="/Steps" render={(props) => (
-              <Steps {...props} isAuthed={true} stepsData={this.state.latestStepsKpis}/>
+              <Steps {...props} isAuthed={true} stepsData={this.state.latestStepsKpis} latestDateLbu={this.state.latestDateLbu} latestDate={this.state.latestDate}/>
             )} />
           <Route exact path="/Failure" render={(props) => (
             <Failure {...props} isAuthed={true} failureData={this.state.failureData}/>

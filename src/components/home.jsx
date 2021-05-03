@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Pie, Doughnut } from "react-chartjs-2";
+import "chartjs-plugin-labels";
 
 class Home extends Component {
   getPassedStatusCount(regressionData1) {
@@ -30,6 +31,7 @@ class Home extends Component {
       totalFailedSenario,
       latestDate,
       regressionData1,
+      lbu,
     } = this.props;
     let chartData = {
       labels: ["Passed", "Failed"],
@@ -37,7 +39,7 @@ class Home extends Component {
         {
           label: "Report",
           backgroundColor: ["#2FDE00", "#B21F00"],
-          hoverBackgroundColor: ["#175000", "#35014F"],
+          hoverBackgroundColor: ["#175000", "red"],
           data: [totalPassedSenario, totalFailedSenario],
         },
       ],
@@ -49,7 +51,7 @@ class Home extends Component {
         {
           label: "Report",
           backgroundColor: ["#2FDE00", "#B21F00"],
-          hoverBackgroundColor: ["#175000", "#35014F"],
+          hoverBackgroundColor: ["#175000", "red"],
           data: [
             this.getPassedStatusCount(regressionData1),
             this.getFailedStatusCount(regressionData1),
@@ -61,26 +63,35 @@ class Home extends Component {
       <>
         {totalPassedSenario !== 0 || totalFailedSenario !== 0 ? (
           <div className="d-flex justify-content-center">
-            <div>
-              <Doughnut
-                width={500}
-                height={400}
-                data={chartData}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: true,
-                  title: {
-                    display: true,
-                    text: "Regression Report As of " + latestDate,
-                    fontSize: 20,
-                  },
-                  legend: {
-                    display: true,
-                    position: "right",
-                  },
-                }}
-              />
-            </div>
+            {lbu.label.toLowerCase().includes("all") === false ? (
+              <div>
+                <Doughnut
+                  width={500}
+                  height={400}
+                  data={chartData}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    title: {
+                      display: true,
+                      text: "Regression Report As of " + latestDate,
+                      fontSize: 20,
+                    },
+                    legend: {
+                      display: true,
+                      position: "right",
+                    },
+                    plugins: {
+                      labels: {
+                        render: "percentage",
+                        fontColor: ["black", "black"],
+                        precision: 2,
+                      },
+                    },
+                  }}
+                />
+              </div>
+            ) : null}
             <div>
               <Pie
                 width={500}
@@ -95,6 +106,13 @@ class Home extends Component {
                   legend: {
                     display: true,
                     position: "right",
+                  },
+                  plugins: {
+                    labels: {
+                      render: "percentage",
+                      fontColor: ["black", "black"],
+                      precision: 2,
+                    },
                   },
                 }}
               />
