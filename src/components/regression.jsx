@@ -255,6 +255,9 @@ class Regression extends Component {
     let lbuData = [];
     let passedData = [];
     let failedData = [];
+    let totalPassedAcrossRegion = 0;
+    let totalFailedAcrossRegion = 0;
+
     this.state.filteredData.filter((step) => {
       if (
         step.date
@@ -267,9 +270,34 @@ class Regression extends Component {
         lbuData.push(step.lbu);
         passedData.push(step.totalPassed);
         failedData.push(step.totalFailed);
+        totalPassedAcrossRegion = totalPassedAcrossRegion + step.totalPassed;
+        totalFailedAcrossRegion = totalFailedAcrossRegion + step.totalFailed;
       }
       return null;
     });
+
+    let regionData = {
+      labels: ["Results"],
+      datasets: [
+        {
+          label: "Passed",
+          backgroundColor: "#2FDE00",
+          hoverBackgroundColor: "green",
+          borderColor: "rgba(255,99,132,1)",
+          borderWidth: 1,
+          data: [totalPassedAcrossRegion],
+        },
+        {
+          label: "Failed",
+          backgroundColor: "red",
+          hoverBackgroundColor: "#B21F00",
+          borderColor: "rgba(255,99,132,1)",
+          borderWidth: 1,
+          data: [totalFailedAcrossRegion],
+        },
+      ],
+    };
+
     let chartData = {
       labels: lbuData,
       datasets: [
@@ -308,7 +336,7 @@ class Regression extends Component {
           <div className="d-flex justify-content-center">
             <div>
               <Bar
-                width={1000}
+                width={900}
                 height={200}
                 data={chartData}
                 options={{
@@ -324,7 +352,35 @@ class Regression extends Component {
                     fontSize: 15,
                   },
                   legend: {
+                    display: false,
+                    position: "right",
+                  },
+                  plugins: {
+                    labels: {
+                      render: "percentage",
+                      fontColor: ["black", "black"],
+                      precision: 2,
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div>
+              <Bar
+                width={300}
+                height={200}
+                data={regionData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  title: {
                     display: true,
+                    text: "Region Status",
+                    fontSize: 15,
+                    position: "left",
+                  },
+                  legend: {
+                    display: false,
                     position: "right",
                   },
                   plugins: {
