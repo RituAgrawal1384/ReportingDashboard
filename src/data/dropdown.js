@@ -176,6 +176,9 @@ export const pulse = [
   { id: 5, date: "19-Apr-2021",lbu:"vn",build:"5",platform:"Android",env:"UAT", jsonFilePath:"/data/pulse/SG/19-Apr-2021/cucumber_preprod.json",reportPath:"/pulse/SG/19-Apr-2021/OnePulse-Regression_prepod_build.pdf" },
   { id: 6, date: "19-Apr-2021",lbu:"ph",build:"6",platform:"Android",env:"UAT", jsonFilePath:"/data/pulse/MY/24-Mar-2021/cucumber.json",reportPath:"/pulse/MY/24-Mar-2021/Sales-portal-test-results.pdf" },
   { id: 7, date: "07-May-2021",lbu:"sg",build:"7",platform:"Android",env:"UAT", jsonFilePath:"/data/pulse/SG/07-May-2021/cucumber.json",reportPath:"/pulse/SG/07-May-2021/OnePulse-app-test-results.pdf" },
+  { id: 8, date: "17-May-2021",lbu:"sg",build:"8",platform:"Android",env:"UAT", jsonFilePath:"/data/pulse/SG/17-May-2021/cucumber.json",reportPath:"/pulse/SG/17-May-2021/OnePulse-app-test-results.pdf" },
+  { id: 9, date: "18-May-2021",lbu:"sg",build:"9",platform:"Ios",env:"UAT", jsonFilePath:"/data/pulse/SG/18-May-2021/cucumber.json",reportPath:"/pulse/SG/18-May-2021/OnePulse-app-test-results.pdf"},
+  { id: 10, date: "19-May-2021",lbu:"sg",build:"10",platform:"Android",env:"UAT", jsonFilePath:"/data/pulse/SG/19-May-2021/cucumber.json",reportPath:"/pulse/SG/19-May-2021/OnePulse-app-test-results.pdf" },
 
 ];
 

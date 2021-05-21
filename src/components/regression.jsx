@@ -337,7 +337,7 @@ class Regression extends Component {
             <div>
               <Bar
                 width={900}
-                height={200}
+                height={150}
                 data={chartData}
                 options={{
                   responsive: true,
@@ -368,7 +368,7 @@ class Regression extends Component {
             <div>
               <Bar
                 width={300}
-                height={200}
+                height={150}
                 data={regionData}
                 options={{
                   responsive: true,
