@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FlashMessage from "react-flash-message";
+// import FlashMessage from "react-flash-message";
 // import Blink from "react-blink-text";
 // import Pagination from "react-bootstrap/Pagination";
 class Steps extends Component {
@@ -102,22 +102,22 @@ class Steps extends Component {
     // );
     return (
       <div className="stock-container">
-        <div className="app-access">
+        {/* <div className="app-access">
           <FlashMessage duration={10000} persistOnHover={true}>
             <p>
               Please change Application/LBU to see steps specific for
               Application/LBU
             </p>
           </FlashMessage>
-          {/* <Blink
+          <Blink
             color="red"
             text="Please change Application/LBU to see steps specific for
               Application/LBU"
             fontSize="20"
           >
             Testing the Blink
-          </Blink> */}
-        </div>
+          </Blink>
+        </div> */}
         <h3 id="title">
           Total Steps: {Object.keys(this.state.filteredData).length}
         </h3>
