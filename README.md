@@ -70,7 +70,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-##What problems can be solved using this Dashboard?
+## What problems can be solved using this Dashboard?
    No need to send execution reports daily, user can go to the reporting dashboard and search for the required report.
    User has access to all the past execution build reports for different LBUs.  Dependency on test team for execution reports can be reduced from this
    Helps testers to look for steps/methods KPIs and plan for optimisation of automation script
@@ -80,7 +80,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-##Dashboard Views
+## Dashboard Views
  The dashboard contains following views
 
 Home : Shows the all the build history run details in pie chart
